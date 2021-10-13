@@ -1,0 +1,35 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <title>FlaskBlog</title>
+</head>
+<body>
+   <h1>Welcome to FlaskBlog</h1>
+</body>
+</html> -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} D-bot Offices {% endblock %}</h1>
+    <!-- Change this to office in offices -->
+    {% for office in offices %}
+        <!-- Change to {{ url_for('office', office_id=office['id']) }} and {{ office['name'] }} -->
+        <a href="{{ url_for('office', office_id=offices['id']) }}">
+            <h2>{{ office['title'] }}</h2>
+        </a>
+        <form action="{{ url_for('access', id=offices['id']) }}" method="POST">
+            <input type="submit" value="Access Office's Locations"
+                    class="btn btn-outline-info"
+                    onclick="return confirm('Do you want to access this office?')">
+        </form>
+        <!-- Change to office['last updated'] and  {{ url_for('edit', id=office['id']) }} -->
+        <!-- <span class="badge badge-primary">{{ post['created'] }}</span>
+        <a href="{{ url_for('edit', id=post['id']) }}">
+            <span class="badge badge-warning">Edit</span>
+        </a>
+        <hr> -->
+{% endfor %}
+{% endblock %}
